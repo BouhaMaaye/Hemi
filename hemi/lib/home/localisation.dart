@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SearchSection extends StatelessWidget {
-  const SearchSection({super.key});
+class LocalisationSection extends StatelessWidget {
+  const LocalisationSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,10 @@ class SearchSection extends StatelessWidget {
                 vertical: 20,
               ),
               prefixIcon: const Icon(
-                Icons.search_outlined,
+                Icons.location_pin,
                 size: 30,
               ),
-              hintText: "Search ",
+              hintText: "Localisation",
               hintStyle: TextStyle(
                 fontSize: 14,
                 color: Colors.grey.withOpacity(0.7),

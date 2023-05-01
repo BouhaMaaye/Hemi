@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hemi/home/header.dart';
 import 'package:hemi/home/search.dart';
+import 'package:hemi/home/localisation.dart';
+import 'package:hemi/home/searchbutton.dart';
 
+import '../home/createadbutton.dart';
 import 'auth_method.dart';
 import 'login_screen.dart';
 
@@ -38,6 +41,9 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const HeaderSection(),
                 const SearchSection(),
+                const LocalisationSection(),
+                const SearchbuttonSection(),
+                const CreateadSection(),
                 // const LocalisationSection(),
               ],
             )
