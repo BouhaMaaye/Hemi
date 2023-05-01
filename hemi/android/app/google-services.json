@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "294059748530",
+    "project_id": "hemi-b6b82",
+    "storage_bucket": "hemi-b6b82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294059748530:android:ab2fb88e9e768f5416adab",
+        "android_client_info": {
+          "package_name": "com.example.hemi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294059748530-jk00plto50baps8sb7vg6n9k91883c0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0lLrW2vb63HTIO7dGPCmQ2x3p0rKgZyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294059748530-jk00plto50baps8sb7vg6n9k91883c0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
