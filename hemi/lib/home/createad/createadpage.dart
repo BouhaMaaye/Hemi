@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hemi/home/createad/push_ad.dart';
 import '../../signup_login/home_screen.dart';
 import 'package:hemi/signup_login/text_field_input.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class Createadpage extends StatefulWidget {
@@ -11,22 +13,41 @@ class Createadpage extends StatefulWidget {
 
 
 class _CreateadpageState extends State<Createadpage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
+  final TextEditingController moduleController = TextEditingController();
+  final TextEditingController titreController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
   bool isLoading = false;
 
   @override
   void dispose() {
     super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    nameController.dispose();
-    addressController.dispose();
+    titreController.dispose();
+    descriptionController.dispose();
+    moduleController.dispose();
+    locationController.dispose();
   }
 
+  void addModuleIfNotExists() async {
+    setState(() {
+      isLoading = true;
+    });
+    print("hey");
+    String res = await Pushad().addModuleIfNotExists(
+        module: moduleController.text,
+        titre: titreController.text,
+        description: descriptionController.text,
+        location: locationController.text);
+    // if string return is success, user has been creaded and navigate to next screen other witse show error.
+    if (res == "success") {
+      print("hey2");
 
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,37 +60,37 @@ class _CreateadpageState extends State<Createadpage> {
               children: [
                 SizedBox(height: height / 4.3),
                 TextFieldInput(
-                    textEditingController: nameController,
-                    hintText: 'Enter à',
+                    textEditingController: moduleController,
+                    hintText: 'Quelle module voulez vous enseignez ? ',
                     textInputType: TextInputType.text),
                 const SizedBox(
                   height: 24,
                 ),
                 TextFieldInput(
-                    textEditingController: emailController,
-                    hintText: 'Enter your email',
+                    textEditingController: titreController,
+                    hintText: 'Donnez un titre à votre annonce',
                     textInputType: TextInputType.text),
                 const SizedBox(
                   height: 24,
                 ),
                 TextFieldInput(
-                  textEditingController: passwordController,
-                  hintText: 'Enter your passord',
+                  textEditingController: descriptionController,
+                  hintText: 'Donnez une description détaillée de votre annonce',
                   textInputType: TextInputType.text,
-                  isPass: true,
+
                 ),
                 const SizedBox(
                   height: 24,
                 ),
                 TextFieldInput(
-                    textEditingController: addressController,
-                    hintText: 'Enter your address',
+                    textEditingController: locationController,
+                    hintText: 'Où allez-vous enseigner ?',
                     textInputType: TextInputType.text),
                 const SizedBox(
                   height: 24,
                 ),
                 InkWell(
-                  //onTap: signupUser,
+                  onTap: addModuleIfNotExists,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -79,7 +100,7 @@ class _CreateadpageState extends State<Createadpage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(Radius.circular(4))),
                           color: Colors.blue),
-                      child: const Text("Sign up"),
+                      child: const Text("Publier l'annonce"),
                     ),
                   ),
                 ),
