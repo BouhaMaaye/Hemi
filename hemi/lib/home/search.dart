@@ -39,15 +39,24 @@ class SearchSection extends StatelessWidget {
               ),
             ),
           ),
-
-
-
-
-
+          Positioned(
+            bottom: 10,
+            right: 12,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: const Color(0xFF5F67EA),
+              ),
+              child: const Icon(
+                Icons.mic_outlined,
+                color: Colors.white,
+                size: 25,
+              ),
+            ),
+          )
         ],
-
       ),
-
     );
   }
 }
