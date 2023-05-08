@@ -9,11 +9,13 @@ import '../home/createadbutton.dart';
 import '../home/searchresults/searchresultpage.dart';
 import 'auth_method.dart';
 import 'login_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController moduleController = TextEditingController();
   final TextEditingController locationcontroller = TextEditingController();
@@ -29,11 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
     print(_items);
     _getItemsFromFirebase();
   }
+
   void _getItemsFromFirebase() {
-    FirebaseFirestore.instance
-        .collection('module')
-        .get()
-        .then((querySnapshot) {
+    FirebaseFirestore.instance.collection('module').get().then((querySnapshot) {
       List<String> items = [];
       querySnapshot.docs.forEach((doc) {
         String name = doc.data()['name'];
@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _filteredItems = results;
     });
   }
+
   void _onItemSelected(String selectedItem) {
     setState(() {
       moduleController.text = selectedItem;
@@ -68,7 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     _isDropdownOpen = false;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Column(
-              children:  [
+              children: [
                 HeaderSection(),
                 SizedBox(height: height / 4.3),
                 Container(
@@ -134,7 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               onTap: () {
                                 _onItemSelected(_filteredItems[index]);
                               },
-
                             );
                           },
                         ),
@@ -144,9 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 TextField(
                   controller: locationcontroller,
-                  cursorColor: const Color(0xFF5F67EA),
+                  cursorColor: Color.fromARGB(255, 0, 1, 9),
                   decoration: InputDecoration(
-                    fillColor: const Color(0xFFF6F8FF),
+                    fillColor: Color.fromARGB(255, 243, 244, 247),
                     filled: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -155,7 +154,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: BorderStyle.none,
                       ),
                     ),
-
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 20,
                       vertical: 20,
@@ -163,6 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     prefixIcon: const Icon(
                       Icons.location_pin,
                       size: 30,
+                      color: Colors.black,
                     ),
                     hintText: "Localisation",
                     hintStyle: TextStyle(
@@ -175,8 +174,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>  Searchresultpage(locationcontroller: locationcontroller.text, moduleController: _controller.text),
-
+                        builder: (context) => Searchresultpage(
+                            locationcontroller: locationcontroller.text,
+                            moduleController: _controller.text),
                       ),
                     );
                   },
@@ -187,7 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(4))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4))),
                           color: Colors.blue),
                       child: const Text("Search"),
                     ),
@@ -200,17 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      appBar: AppBar(
-        actions: [
-          ElevatedButton(
-              onPressed: () async {
-                await AuthMethod().signOut();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const LoginScreen()));
-              },
-              child: const Text("LogOut"))
-        ],
-      ),
+
       //bottomNavigationBar: NavigationBar(),
     );
   }

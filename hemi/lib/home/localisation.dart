@@ -5,7 +5,6 @@ class LocalisationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 25,
@@ -16,7 +15,7 @@ class LocalisationSection extends StatelessWidget {
           TextField(
             cursorColor: const Color(0xFF5F67EA),
             decoration: InputDecoration(
-              fillColor: const Color(0xFFF6F8FF),
+              fillColor: Color.fromARGB(255, 0, 4, 17),
               filled: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -25,7 +24,6 @@ class LocalisationSection extends StatelessWidget {
                   style: BorderStyle.none,
                 ),
               ),
-
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 20,
@@ -41,15 +39,8 @@ class LocalisationSection extends StatelessWidget {
               ),
             ),
           ),
-
-
-
-
-
         ],
-
       ),
-
     );
   }
 }

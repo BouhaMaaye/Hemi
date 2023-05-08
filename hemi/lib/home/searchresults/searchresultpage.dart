@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -34,6 +28,7 @@ class _SearchresultpageState extends State<Searchresultpage> {
         .where('module', isEqualTo: widget.moduleController)
         .snapshots();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +81,8 @@ class _SearchresultpageState extends State<Searchresultpage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            document['module'], // replace with field name from document
+                            document[
+                                'module'], // replace with field name from document
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -94,14 +90,16 @@ class _SearchresultpageState extends State<Searchresultpage> {
                           ),
                           SizedBox(height: 8),
                           Text(
-                            document['titre'], // replace with field name from document
+                            document[
+                                'titre'], // replace with field name from document
                             style: TextStyle(
                               fontSize: 16,
                             ),
                           ),
                           SizedBox(height: 8),
                           Text(
-                            document['description'], // replace with field name from document
+                            document[
+                                'description'], // replace with field name from document
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -114,7 +112,8 @@ class _SearchresultpageState extends State<Searchresultpage> {
                               Icon(Icons.location_on),
                               SizedBox(width: 4),
                               Text(
-                                document['location'], // replace with field name from document
+                                document[
+                                    'location'], // replace with field name from document
                                 style: TextStyle(
                                   fontSize: 14,
                                 ),
