@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class AuthMethod {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -13,7 +16,7 @@ class AuthMethod {
     required String address,
     required String name,
   }) async {
-    String res = "Some error Occurred";
+    String res = "Some error occurred";
     try {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
@@ -24,7 +27,7 @@ class AuthMethod {
           email: email,
           password: password,
         );
-        // add user to your  firestore database
+        // add user to your firestore database
         print(cred.user!.uid);
         await _firestore.collection("users").doc(cred.user!.uid).set({
           'name': name,
@@ -46,7 +49,7 @@ class AuthMethod {
     required String email,
     required String password,
   }) async {
-    String res = "Some error Occurred";
+    String res = "Some error occurred";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
         // logging in user with email and password
@@ -64,11 +67,29 @@ class AuthMethod {
     return res;
   }
 
-  // for sighout
+  // Reset password
+  Future<String> resetPassword(String email) async {
+    String res = "Some error occurred";
+    try {
+      if (email.isNotEmpty) {
+        await _auth.sendPasswordResetEmail(email: email);
+        res = "success";
+      } else {
+        res = "Please enter your email";
+      }
+    } catch (err) {
+      return err.toString();
+    }
+    return res;
+  }
+
+  // for sign out
   Future<void> signOut() async {
     await _auth.signOut();
   }
 }
+
+
 
       // StreamBuilder(
       //   stream: FirebaseAuth.instance.authStateChanges(),

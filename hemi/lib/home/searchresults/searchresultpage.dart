@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'announcement_details_page.dart';
 
 class Searchresultpage extends StatefulWidget {
   final String locationcontroller;
@@ -10,6 +11,7 @@ class Searchresultpage extends StatefulWidget {
     required this.moduleController,
     Key? key,
   }) : super(key: key);
+
   @override
   _SearchresultpageState createState() => _SearchresultpageState();
 }
@@ -57,73 +59,83 @@ class _SearchresultpageState extends State<Searchresultpage> {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (BuildContext context, int index) {
-              var document = snapshot.data!.docs[index];
+              var announcementSnapshot = snapshot.data!.docs[index]
+                  as QueryDocumentSnapshot<Map<String, dynamic>>;
+              var photoUrll = announcementSnapshot.data()['photoUrl'];
               return Card(
                 elevation: 4,
                 margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            'https://st2.depositphotos.com/46171552/46805/i/600/depositphotos_468054886-stock-photo-teacher-books-smiling-camera-classroom.jpg?forcejpeg=true', // replace with image URL from document
-                          ),
-                          fit: BoxFit.cover,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AnnouncementDetailsPage(
+                          announcementSnapshot: announcementSnapshot,
                         ),
                       ),
-                      height: 200,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            document[
-                                'module'], // replace with field name from document
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              'photoUrll',
                             ),
+                            fit: BoxFit.cover,
                           ),
-                          SizedBox(height: 8),
-                          Text(
-                            document[
-                                'titre'], // replace with field name from document
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            document[
-                                'description'], // replace with field name from document
-                            style: TextStyle(
-                              fontSize: 14,
-                            ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Icon(Icons.location_on),
-                              SizedBox(width: 4),
-                              Text(
-                                document[
-                                    'location'], // replace with field name from document
-                                style: TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
+                        height: 200,
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              announcementSnapshot['module'],
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              announcementSnapshot['titre'],
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              announcementSnapshot['description'],
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Icon(Icons.location_on),
+                                SizedBox(width: 4),
+                                Text(
+                                  announcementSnapshot['location'],
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

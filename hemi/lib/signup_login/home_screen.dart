@@ -4,9 +4,10 @@ import 'package:hemi/home/search.dart';
 import 'package:hemi/home/localisation.dart';
 import 'package:hemi/home/searchbutton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:hemi/home/profile/profile.dart';
 import '../home/createadbutton.dart';
 import '../home/searchresults/searchresultpage.dart';
+import '../mes annonce/annonce.dart';
 import 'auth_method.dart';
 import 'login_screen.dart';
 
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Visibility(
                   visible: _isDropdownOpen,
                   child: Positioned(
-                    top: 150, // ajustez la position en fonction de vos besoins
+                    top: 150, // Adjust the position according to your needs
                     left: 0,
                     right: 0,
                     child: Container(
@@ -141,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 16), // Add spacing here
                 TextField(
                   controller: locationcontroller,
                   cursorColor: Color.fromARGB(255, 0, 1, 9),
@@ -166,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     hintText: "Localisation",
                     hintStyle: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey.withOpacity(0.7),
+                      color: Colors.black, // Set the text color to black
                     ),
                   ),
                 ),
@@ -175,8 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => Searchresultpage(
-                            locationcontroller: locationcontroller.text,
-                            moduleController: _controller.text),
+                          locationcontroller: locationcontroller.text,
+                          moduleController: _controller.text,
+                        ),
                       ),
                     );
                   },
@@ -186,10 +189,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: const ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4))),
-                          color: Colors.blue),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                        ),
+                        color: Colors.blue,
+                      ),
                       child: const Text("Search"),
                     ),
                   ),
@@ -197,12 +201,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 CreateadSection(),
                 // const LocalisationSection(),
               ],
-            )
+            ),
           ],
         ),
       ),
-
-      //bottomNavigationBar: NavigationBar(),
+      bottomNavigationBar: NavigationBar(),
     );
   }
 
@@ -210,5 +213,97 @@ class _HomeScreenState extends State<HomeScreen> {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     throw UnimplementedError();
+  }
+}
+
+class NavigationBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: const Color(0xfff6f8ff),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 5,
+              blurRadius: 10,
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: BottomNavigationBar(
+            selectedItemColor: const Color(0xFF5F67EA),
+            selectedFontSize: 12,
+            unselectedFontSize: 12,
+            unselectedItemColor: Colors.grey.withOpacity(0.7),
+            type: BottomNavigationBarType.fixed,
+            items: [
+              const BottomNavigationBarItem(
+                label: 'Accueil',
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: 50,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: "Mes annonces",
+                icon: Container(
+                  margin: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.messenger,
+                    size: 30,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: "Profil",
+                icon: InkWell(
+                  onTap: () {
+                    // Naviguer vers la page de profil
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Icons.person_outline,
+                      size: 30,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            onTap: (int index) {
+              if (index == 1) {
+                // Naviguer vers la page de discussion
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AnnoncesPage()),
+                );
+              }
+            },
+          ),
+        ),
+      ),
+    );
   }
 }

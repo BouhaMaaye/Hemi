@@ -36,10 +36,11 @@ class _SignupScreenState extends State<SignupScreen> {
     });
     // signup user using our authmethod
     String res = await AuthMethod().signupUser(
-        email: emailController.text,
-        password: passwordController.text,
-        address: addressController.text,
-        name: nameController.text);
+      email: emailController.text,
+      password: passwordController.text,
+      address: addressController.text,
+      name: nameController.text,
+    );
     // if string return is success, user has been creaded and navigate to next screen other witse show error.
     if (res == "success") {
       setState(() {
