@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       color: Colors.blue,
                     ),
-                    child: const Text("Log in"),
+                    child: const Text("Login"),
                   ),
                 ),
               ),
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: resetPassword,
                     child: const Text(
-                      "Forgot Password?",
+                      "Forgot_Password?",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -131,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: const Text(
-                      "SignUp",
+                      "Sign up",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

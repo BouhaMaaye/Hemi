@@ -1,0 +1,16 @@
+{
+    "Choose_language":"chois de langue",
+
+    "name": "ادخل اسمك",
+    "Enter_your_email": "أدخل بريدك الإلكتروني",
+    "Enter_your_password": "دخل كلمة المرور الخاصة بك",
+    "Enter_your_address": "أدخل عنوانك",
+    "Sign_up": "اشترك",
+    "Already_have_an_account?": "هل لديك حساب بالفعل؟",
+    "Login": "تسجيل الدخول",
+
+
+
+    "Forgot_Password?": "هل نسيت كلمة المرور؟",
+    "Dont_have_an_account?": "لا تمتلك حسابًا؟"
+}

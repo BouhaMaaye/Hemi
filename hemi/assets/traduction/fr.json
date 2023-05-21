@@ -1,0 +1,15 @@
+{
+	"Choose_language":"chois de langue",
+	"name": "Saisissez votre nom.",
+	"Enter_your_email": "Saisissez votre adresse email",
+	"Enter_your_password": "Saisissez votre mot de passe",
+	"Enter_your_address": "Saisissez votre address",
+	"Sign_up": "Inscrivez vous",
+	"Already_have_an_account?": "Avez-vous déjà un compte ?",
+	"Login": "Connectez-vous.",
+
+
+
+	"Forgot_Password?": "Mot de passe oublié ?",
+	"Dont_have_an_account?": "Vous n'avez pas de compte ?"
+}
