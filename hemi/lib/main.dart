@@ -25,6 +25,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
             scaffoldBackgroundColor: const Color.fromARGB(255, 58, 86, 138)),
-        home: const SignupScreen());
+        home: const LoginScreen());
   }
 }

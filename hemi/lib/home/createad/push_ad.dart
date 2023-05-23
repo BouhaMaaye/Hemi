@@ -12,7 +12,9 @@ class Pushad {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final auteurId = user.uid;
-
+      final auteurPhoto = (await FirebaseFirestore.instance.collection('users').where('uid', isEqualTo: auteurId).get()).docs.first.data()?['photoUrl'];
+      print("yaaaaaay");
+      print(auteurPhoto);
       final snapshot = await databaseReference
           .collection('Annonces')
           .where('module', isEqualTo: module)
@@ -26,8 +28,8 @@ class Pushad {
           'titre': titre,
           'description': description,
           'location': location,
-          'auteurId':
-              auteurId, // Ajouter le champ auteurId avec l'ID de l'utilisateur actuel
+          'auteurPhoto':auteurPhoto,
+          'auteurId':auteurId, // Ajouter le champ auteurId avec l'ID de l'utilisateur actuel
         });
         return 'success';
       }

@@ -61,7 +61,9 @@ class _SearchresultpageState extends State<Searchresultpage> {
             itemBuilder: (BuildContext context, int index) {
               var announcementSnapshot = snapshot.data!.docs[index]
                   as QueryDocumentSnapshot<Map<String, dynamic>>;
-              var photoUrll = announcementSnapshot.data()['photoUrl'];
+              var photoUrll = announcementSnapshot.data()['auteurPhoto'];
+              print("wooooooooooooow");
+              print(announcementSnapshot.data());
               return Card(
                 elevation: 4,
                 margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -83,7 +85,7 @@ class _SearchresultpageState extends State<Searchresultpage> {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
-                              'photoUrll',
+                              photoUrll,
                             ),
                             fit: BoxFit.cover,
                           ),
