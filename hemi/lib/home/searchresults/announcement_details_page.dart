@@ -28,7 +28,7 @@ class AnnouncementDetailsPage extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    announcementData['photoUrl'] ?? '',
+                    announcementData['auteurPhoto'] ?? '',
                   ),
                   fit: BoxFit.cover,
                 ),
